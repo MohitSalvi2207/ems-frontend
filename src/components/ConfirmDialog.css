@@ -1,0 +1,107 @@
+.confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.confirm-dialog {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 32px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+}
+
+.confirm-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    transition: all var(--transition-fast);
+}
+
+.confirm-close:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.confirm-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin: 0 auto 18px;
+    animation: pulse-icon 1.5s ease-in-out infinite;
+}
+
+.confirm-icon-danger {
+    background: rgba(239, 68, 68, 0.12);
+    color: var(--danger-400);
+}
+
+.confirm-icon-warning {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--warning-400);
+}
+
+.confirm-icon-primary {
+    background: rgba(99, 102, 241, 0.12);
+    color: var(--primary-400);
+}
+
+@keyframes pulse-icon {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.confirm-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.confirm-message {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 26px;
+    line-height: 1.5;
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.confirm-actions .btn {
+    min-width: 110px;
+}

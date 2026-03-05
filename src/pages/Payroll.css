@@ -1,0 +1,191 @@
+/* ─── GENERATE FORM ─── */
+.generate-card {
+    margin-bottom: 20px;
+}
+
+.generate-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.gen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+}
+
+.gen-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+/* ─── FILTERS ─── */
+.filters-bar {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    padding: 14px 20px;
+}
+
+.filter-select {
+    width: 160px;
+}
+
+/* ─── TABLE WRAPPER ─── */
+.table-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.table-responsive-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.data-table {
+    min-width: 650px;
+}
+
+/* ─── AMOUNTS ─── */
+.amount-positive {
+    color: var(--accent-400);
+}
+
+.amount-negative {
+    color: var(--danger-400);
+}
+
+.amount-net {
+    color: var(--text-primary);
+}
+
+/* ─── ACTION BUTTONS ─── */
+.action-btns {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+/* ─── MOBILE PAYROLL CARDS ─── */
+.mobile-payroll-list {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+}
+
+.mobile-payroll-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 14px;
+}
+
+.mobile-payroll-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.mobile-payroll-period {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.mobile-payroll-emp {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.mobile-payroll-amounts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.mobile-payroll-field {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.mobile-field-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+}
+
+.mobile-field-value {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.mobile-payroll-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.net-salary-highlight {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--accent-400);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+    .filters-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+
+    .gen-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .gen-actions {
+        flex-direction: column-reverse;
+    }
+
+    .gen-actions .btn {
+        width: 100%;
+    }
+
+    /* Hide table, show cards */
+    .table-responsive-wrapper {
+        display: none;
+    }
+
+    .mobile-payroll-list {
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    .gen-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mobile-payroll-amounts {
+        grid-template-columns: 1fr;
+    }
+}

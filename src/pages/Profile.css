@@ -1,0 +1,120 @@
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 24px;
+}
+
+.profile-card {
+    text-align: center;
+}
+
+.profile-avatar-section {
+    margin-bottom: 24px;
+}
+
+.profile-avatar-lg {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 800;
+    font-size: 2rem;
+    margin: 0 auto 16px;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.profile-avatar-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+}
+
+.profile-position {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.detail-item div {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.detail-value {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.edit-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-card {
+        padding: 20px;
+    }
+
+    .profile-avatar-lg {
+        width: 64px;
+        height: 64px;
+        font-size: 1.6rem;
+    }
+
+    .profile-avatar-section h2 {
+        font-size: 1.1rem;
+    }
+
+    .detail-item {
+        font-size: 1rem;
+        gap: 10px;
+    }
+
+    .edit-card {
+        padding: 20px;
+    }
+
+    .edit-card .form-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .modal-actions .btn {
+        width: 100%;
+    }
+}

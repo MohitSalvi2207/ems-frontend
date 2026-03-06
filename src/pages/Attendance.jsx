@@ -146,30 +146,67 @@ const Attendance = () => {
                 {loading ? (
                     <div className="loading-container"><div className="spinner"></div></div>
                 ) : (
-                    <table className="data-table">
-                        <thead>
-                            <tr>
-                                {(view === 'all' && isAdmin) && <th>Employee</th>}
-                                <th>Date</th>
-                                <th>Check In</th>
-                                <th>Check Out</th>
-                                <th>Work Hours</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {attendanceData.map(att => (
-                                <tr key={att._id}>
-                                    {(view === 'all' && isAdmin) && <td>{att.user?.name || '—'}</td>}
-                                    <td>{att.date}</td>
-                                    <td>{att.checkIn ? new Date(att.checkIn).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '—'}</td>
-                                    <td>{att.checkOut ? new Date(att.checkOut).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '—'}</td>
-                                    <td>{att.workHours ? `${att.workHours}h` : '—'}</td>
-                                    <td>{getStatusBadge(att.status)}</td>
+                    <>
+                        {/* Desktop table view */}
+                        <table className="data-table">
+                            <thead>
+                                <tr>
+                                    {(view === 'all' && isAdmin) && <th>Employee</th>}
+                                    <th>Date</th>
+                                    <th>Check In</th>
+                                    <th>Check Out</th>
+                                    <th>Work Hours</th>
+                                    <th>Status</th>
                                 </tr>
+                            </thead>
+                            <tbody>
+                                {attendanceData.map(att => (
+                                    <tr key={att._id}>
+                                        {(view === 'all' && isAdmin) && <td>{att.user?.name || '—'}</td>}
+                                        <td>{att.date}</td>
+                                        <td>{att.checkIn ? new Date(att.checkIn).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '—'}</td>
+                                        <td>{att.checkOut ? new Date(att.checkOut).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '—'}</td>
+                                        <td>{att.workHours ? `${att.workHours}h` : '—'}</td>
+                                        <td>{getStatusBadge(att.status)}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+
+                        {/* Mobile card view */}
+                        <div className="attendance-cards">
+                            {attendanceData.map(att => (
+                                <div className="attendance-card-item" key={att._id}>
+                                    <div className="att-card-header">
+                                        <span className="att-card-name">
+                                            {(view === 'all' && isAdmin) ? (att.user?.name || '—') : att.date}
+                                        </span>
+                                        <span>{getStatusBadge(att.status)}</span>
+                                    </div>
+                                    <div className="att-card-details">
+                                        {(view === 'all' && isAdmin) && (
+                                            <div className="att-card-field">
+                                                <span className="att-card-field-label">Date</span>
+                                                <span className="att-card-field-value">{att.date}</span>
+                                            </div>
+                                        )}
+                                        <div className="att-card-field">
+                                            <span className="att-card-field-label">Check In</span>
+                                            <span className="att-card-field-value">{att.checkIn ? new Date(att.checkIn).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '—'}</span>
+                                        </div>
+                                        <div className="att-card-field">
+                                            <span className="att-card-field-label">Check Out</span>
+                                            <span className="att-card-field-value">{att.checkOut ? new Date(att.checkOut).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '—'}</span>
+                                        </div>
+                                        <div className="att-card-field">
+                                            <span className="att-card-field-label">Hours</span>
+                                            <span className="att-card-field-value">{att.workHours ? `${att.workHours}h` : '—'}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             ))}
-                        </tbody>
-                    </table>
+                        </div>
+                    </>
                 )}
                 {!loading && attendanceData.length === 0 && <div className="empty-state"><p>No attendance records found</p></div>}
             </div>

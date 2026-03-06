@@ -96,6 +96,29 @@ const Login = () => {
                             {loading ? <div className="spinner" style={{ width: 20, height: 20, borderWidth: 2 }}></div> : 'Sign In'}
                         </button>
                     </form>
+
+                    {/* Demo Credentials */}
+                    <div className="demo-credentials">
+                        <p className="demo-title">Demo Accounts — Click to autofill</p>
+                        <div className="demo-grid">
+                            <button type="button" onClick={() => { setEmail('superadmin@ems.com'); setPassword('admin123'); }}>
+                                <strong>Super Admin</strong>
+                                <span>superadmin@ems.com</span>
+                            </button>
+                            <button type="button" onClick={() => { setEmail('admin@ems.com'); setPassword('admin123'); }}>
+                                <strong>Admin (HR)</strong>
+                                <span>admin@ems.com</span>
+                            </button>
+                            <button type="button" onClick={() => { setEmail('manager@ems.com'); setPassword('admin123'); }}>
+                                <strong>Admin (Eng)</strong>
+                                <span>manager@ems.com</span>
+                            </button>
+                            <button type="button" onClick={() => { setEmail('ankit@ems.com'); setPassword('emp123'); }}>
+                                <strong>Employee</strong>
+                                <span>ankit@ems.com</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

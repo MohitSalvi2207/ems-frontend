@@ -10,6 +10,18 @@ const api = axios.create({
     }
 });
 
+// Request interceptor - attach token from localStorage
+api.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('accessToken');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => Promise.reject(error)
+);
+
 // Response interceptor - handle 401 and auto-refresh
 api.interceptors.response.use(
     (response) => response,
@@ -19,9 +31,14 @@ api.interceptors.response.use(
         if (error.response?.status === 401 && error.response?.data?.expired && !originalRequest._retry) {
             originalRequest._retry = true;
             try {
-                await axios.post(`${BASE_URL}/auth/refresh`, {}, { withCredentials: true });
+                const { data } = await axios.post(`${BASE_URL}/auth/refresh`, {}, { withCredentials: true });
+                if (data.accessToken) {
+                    localStorage.setItem('accessToken', data.accessToken);
+                    originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+                }
                 return api(originalRequest);
             } catch (refreshError) {
+                localStorage.removeItem('accessToken');
                 window.location.href = '/login';
                 return Promise.reject(refreshError);
             }

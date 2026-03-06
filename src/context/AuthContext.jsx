@@ -19,10 +19,17 @@ export const AuthProvider = ({ children }) => {
 
     const checkAuth = async () => {
         try {
+            const token = localStorage.getItem('accessToken');
+            if (!token) {
+                setUser(null);
+                setLoading(false);
+                return;
+            }
             const { data } = await api.get('/auth/me');
             if (data.success) setUser(data.user);
         } catch {
             setUser(null);
+            localStorage.removeItem('accessToken');
         } finally {
             setLoading(false);
         }
@@ -31,6 +38,9 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         const { data } = await api.post('/auth/login', { email, password });
         if (data.success) {
+            if (data.accessToken) {
+                localStorage.setItem('accessToken', data.accessToken);
+            }
             setUser(data.user);
         }
         return data;
@@ -40,6 +50,7 @@ export const AuthProvider = ({ children }) => {
         try {
             await api.post('/auth/logout');
         } catch { }
+        localStorage.removeItem('accessToken');
         setUser(null);
     };
 
